@@ -41,7 +41,9 @@
                  appending (loop for rule in (typecase rules
                                                (list rules)
                                                (t (list rules)))
-                                 collect `(list ,(format nil "^~A$" rule)
+                                 collect `(list ,(typecase rule
+                                                           (string (format nil "^~A$" rule))
+                                                           (t rule))
                                                 (lambda ()
                                                   ,@code))))))
 
@@ -53,7 +55,8 @@
 (defun search-rule (rules path)
   (loop for (rule-path func) in rules
         do (log:debug "Checking" rule-path "against" path)
-        when (cl-ppcre:scan rule-path path)
+        when (or (eql rule-path t) ;; path can be not a string but just 't
+                 (cl-ppcre:scan rule-path path))
           return func))
 
 
@@ -76,7 +79,9 @@
             (setf (get-current-widget widget) (funcall construct-new-widget)
                   ;; Now we'll remember that path was changed
                   (get-path widget) path)
-            (error "No widget constructor for path ~A" path)))))
+            ;; TODO: Make this behaviour configurable
+            (progn (log:error "No widget constructor for path ~A" path)
+                   (weblocks.response:abort-processing "Not found" :code 404))))))
 
   (when (get-current-widget widget)
     (weblocks.widget:render-widget

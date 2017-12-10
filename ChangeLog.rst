@@ -2,12 +2,15 @@
  ChangeLog
 ===========
 
-0.1.0 (unreleased)
+0.1.1 (2017-12-10)
 ==================
 
-* Number features here.
-* Like that.
-* Add new versions to the top.
-* Specify dates as ``2017-04-19``.
-* Read `KeepAChangelog.com <http://keepachangelog.com/>`_ for futher
-  explanations.
+* Now if no regex for URL, weblocks will return 404.
+  But you can redefine this behavior, providing a rule with ``t``
+  instead of the regex.
+
+
+0.1.0 (2017-12-10)
+==================
+
+* Basic functionality.
