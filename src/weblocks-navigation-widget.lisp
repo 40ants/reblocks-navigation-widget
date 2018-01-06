@@ -69,7 +69,7 @@
   (log:info "Rendering navigation widget")
 
   (let ((previous-path (get-path widget))
-        (path (weblocks.request:request-path-info)))
+        (path (weblocks.request:get-path)))
     (unless (equal previous-path
                    path)
       ;; Create a new widget or switch to existing one
