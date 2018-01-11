@@ -1,7 +1,8 @@
 (defpackage weblocks-navigation-widget
   (:use :cl)
   (:export
-   #:make-navigation-widget))
+   #:make-navigation-widget
+   #:defwidget))
 (in-package :weblocks-navigation-widget)
 
 
@@ -47,9 +48,27 @@
                                                 (lambda ()
                                                   ,@code))))))
 
+
 (defmacro make-navigation-widget (&rest rules)
   `(make-instance 'navigation-widget
                   :rules ,(make-lambda-rules rules)))
+
+
+(defmacro defwidget (class-name &rest rules)
+  "Defines a new class with name <class-name>, inherited from `navigation-widget'.
+
+   And a function `make-<class-name>' to make instances of this class."
+  
+  (let ((make-func-name (alexandria:symbolicate :make- class-name))
+        (rules (make-lambda-rules rules)))
+    `(progn (weblocks.widget:defwidget ,class-name (navigation-widget)
+              ())
+            
+            (defun ,make-func-name (&rest args)
+              (apply #'make-instance
+                     ',class-name
+                     :rules ,rules
+                     args)))))
 
 
 (defun search-rule (rules path)

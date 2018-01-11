@@ -2,6 +2,16 @@
  ChangeLog
 ===========
 
+0.3.0 (2018-01-11)
+==================
+
+Added a ``defwidget`` macro, which defines a new class,
+based on navigation-widget, along with rules and a
+``make-<new-class>`` function.
+
+This can be useful when you need navigation widget with
+customized ``render`` method or attached dependencies.
+
 0.2.0 (2018-01-07)
 ==================
 
