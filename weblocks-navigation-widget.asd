@@ -1,26 +1,10 @@
-#|
-  This file is a part of weblocks-navigation-widget project.
-|#
-
-#|
-  A container widget which switches between children widgets when user changes an url.
-|#
-
-
-(in-package :cl-user)
-(defpackage weblocks-navigation-widget-asd
-  (:use :cl :asdf))
-(in-package :weblocks-navigation-widget-asd)
-
-
 (defsystem weblocks-navigation-widget
   :version (:read-file-form "version.lisp-expr")
-  :author ""
-  :license ""
-  :depends-on (weblocks-ui)
-  :components ((:module "src"
-                :components
-                ((:file "weblocks-navigation-widget"))))
+  :author "Alexander Artemenko <svetlyak.40wt@gmail.com"
+  :license "BSD"
+  :class :package-inferred-system
+  :pathname "src"
+  :depends-on ("weblocks-navigation-widget/core")
   :description "A container widget which switches between children widgets when user changes an url."
   :long-description
   #.(with-open-file (stream (merge-pathnames

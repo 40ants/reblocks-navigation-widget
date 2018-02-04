@@ -1,12 +1,23 @@
-(defpackage weblocks-navigation-widget
+(defpackage weblocks-navigation-widget/core
+  (:nicknames #:weblocks-navigation-widget)
   (:use :cl)
+  ;; just dependencies
+  (:import-from #:log4cl)
+  (:import-from #:weblocks/request)
+  
+  (:import-from #:weblocks/widget
+                #:render)
+  (:import-from #:weblocks-ui/core
+                #:widget)
+  (:import-from #:weblocks/response
+                #:abort-processing)
   (:export
    #:make-navigation-widget
    #:defwidget))
-(in-package :weblocks-navigation-widget)
+(in-package weblocks-navigation-widget)
 
 
-(weblocks.widget:defwidget navigation-widget (weblocks.ui.core:widget)
+(weblocks/widget:defwidget navigation-widget (widget)
   ((current-widget :initform nil
                    :accessor get-current-widget)
    (path :initform nil
@@ -61,7 +72,7 @@
   
   (let ((make-func-name (alexandria:symbolicate :make- class-name))
         (rules (make-lambda-rules rules)))
-    `(progn (weblocks.widget:defwidget ,class-name (navigation-widget)
+    `(progn (weblocks/widget:defwidget ,class-name (navigation-widget)
               ())
             
             (defun ,make-func-name (&rest args)
@@ -84,11 +95,11 @@
                path))
 
 
-(defmethod weblocks.widget:render ((widget navigation-widget))
+(defmethod render ((widget navigation-widget))
   (log:info "Rendering navigation widget")
 
   (let ((previous-path (get-path widget))
-        (path (weblocks.request:get-path)))
+        (path (weblocks/request:get-path)))
     (unless (equal previous-path
                    path)
       ;; Create a new widget or switch to existing one
@@ -100,8 +111,8 @@
                   (get-path widget) path)
             ;; TODO: Make this behaviour configurable
             (progn (log:error "No widget constructor for path ~A" path)
-                   (weblocks.response:abort-processing "Not found" :code 404))))))
+                   (abort-processing "Not found" :code 404))))))
 
   (when (get-current-widget widget)
-    (weblocks.widget:render-widget
+    (render
      (get-current-widget widget))))
