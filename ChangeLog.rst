@@ -2,6 +2,14 @@
  ChangeLog
 ===========
 
+0.4.1 (2018-11-25)
+==================
+
+Changes
+-------
+
+* Message "Rendering navigation widget" now logged with ``DEBUG`` level.
+
 0.4.0 (2018-02-04)
 ==================
 

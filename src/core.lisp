@@ -96,7 +96,7 @@
 
 
 (defmethod render ((widget navigation-widget))
-  (log:info "Rendering navigation widget")
+  (log:debug "Rendering navigation widget")
 
   (let ((previous-path (get-path widget))
         (path (weblocks/request:get-path)))
