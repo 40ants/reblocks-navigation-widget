@@ -10,7 +10,7 @@
   (:import-from #:weblocks-ui/core
                 #:widget)
   (:import-from #:weblocks/response
-                #:abort-processing)
+                #:immediate-response)
   (:export
    #:make-navigation-widget
    #:defwidget))
@@ -111,7 +111,7 @@
                   (get-path widget) path)
             ;; TODO: Make this behaviour configurable
             (progn (log:error "No widget constructor for path ~A" path)
-                   (abort-processing "Not found" :code 404))))))
+                   (immediate-response "Not found" :code 404))))))
 
   (when (get-current-widget widget)
     (render
