@@ -1,6 +1,6 @@
 (defsystem weblocks-navigation-widget
   :version (:read-file-form "version.lisp-expr")
-  :author "Alexander Artemenko <svetlyak.40wt@gmail.com"
+  :author "Alexander Artemenko <svetlyak.40wt@gmail.com>"
   :license "BSD"
   :class :package-inferred-system
   :pathname "src"
