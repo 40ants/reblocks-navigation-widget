@@ -2,6 +2,14 @@
  ChangeLog
 ===========
 
+
+Changes
+-------
+
+* Renamed ``defwidget`` to ``defroutes``, so that it is more explicit
+  and it doesn't clash with ``weblocks/widget:defwidget``.
+
+
 0.5.0 (2019-01-22)
 ==================
 
@@ -10,7 +18,7 @@ Changes
 
 * Function ``weblocks/response:abort-processing`` was replaced with
   ``weblocks/response:immediate-response`` to work with ``Weblocks >= 0.35.0``.
-  
+
 
 0.4.1 (2018-11-25)
 ==================

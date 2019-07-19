@@ -13,7 +13,7 @@
                 #:immediate-response)
   (:export
    #:make-navigation-widget
-   #:defwidget))
+   #:defroutes))
 (in-package weblocks-navigation-widget)
 
 
@@ -65,7 +65,7 @@
                   :rules ,(make-lambda-rules rules)))
 
 
-(defmacro defwidget (class-name &rest rules)
+(defmacro defroutes (class-name &rest rules)
   "Defines a new class with name <class-name>, inherited from `navigation-widget'.
 
    And a function `make-<class-name>' to make instances of this class."
