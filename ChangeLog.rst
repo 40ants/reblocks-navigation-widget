@@ -2,6 +2,12 @@
  ChangeLog
 ===========
 
+0.6.1 (2021-03-12)
+==================
+
+* Remove to ``weblocks-ui/core:ui-widget`` because ``weblocks-ui/core:widget``
+  is deprecated and will be removed soon.
+
 0.6.0 (2019-07-23)
 ==================
 

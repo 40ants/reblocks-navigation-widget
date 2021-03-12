@@ -8,7 +8,7 @@
   (:import-from #:weblocks/widget
                 #:render)
   (:import-from #:weblocks-ui/core
-                #:widget)
+                #:ui-widget)
   (:import-from #:weblocks/response
                 #:immediate-response)
   (:export
@@ -17,7 +17,7 @@
 (in-package weblocks-navigation-widget)
 
 
-(weblocks/widget:defwidget navigation-widget (widget)
+(weblocks/widget:defwidget navigation-widget (ui-widget)
   ((current-widget :initform nil
                    :accessor get-current-widget)
    (path :initform nil
