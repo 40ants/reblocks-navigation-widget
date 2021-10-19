@@ -42,9 +42,13 @@
 
 (defsection @index (:title "Weblocks Navigation Widget"
                     :ignore-words ("URL"
+                                   "BSD"
+                                   "GIT"
                                    "WEBLOCKS/REQUEST:GET-PATH"
                                    "MAKE-TASK-PAGE"
                                    "MAKE-TASK-LIST"))
+  (weblocks-navigation-widget system)
+  
   "# Introduction
 
    This addon for Weblocks frameworks allows you to define which widgets should be

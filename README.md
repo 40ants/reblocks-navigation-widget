@@ -9,7 +9,7 @@
 This addon for Weblocks frameworks allows you to define which widgets should be
 shown to the user dependening on `URL`'s path.
 
-The main entry-point is [`defroutes`][5b28] macro. Use it to define a subclass of
+The main entry-point is [`defroutes`][1d19] macro. Use it to define a subclass of
 navigation widget and then return this widget from the session initialization
 method of your Weblocks application.
 
@@ -19,9 +19,9 @@ method of your Weblocks application.
 
 <a id="x-28WEBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29"></a>
 
-## [macro](702f) `weblocks-navigation-widget:defroutes` class-name &rest rules
+## [macro](7324) `weblocks-navigation-widget:defroutes` class-name &rest rules
 
-Defines a new class with name `CLASS-NAME`, inherited from [`navigation-widget`][7491].
+Defines a new class with name `CLASS-NAME`, inherited from [`navigation-widget`][c6a6].
 
 And a function `make-{class-name}` to make instances of this class.
 
@@ -39,18 +39,18 @@ Here is an example of a widget with two rules:
                                    "Have a profit")))
 ```
 With these rules, when user opens `URL` `/tasks/` a widget returned by `MAKE-TASK-LIST`
-will be set as [`current-widget`][6c59] and shown to the user. If user clicks on some task
+will be set as [`current-widget`][52ac] and shown to the user. If user clicks on some task
 and `URL` change to `/tasks/100500`, then a widget for a task will be created by a call
 to `MAKE-TASK-PAGE`.
 
-Pay attention that widget creation form is responsible for extraction of the parameters
+**Pay attention** that widget creation form is responsible for extraction of the parameters
 from the `URL`. In above case, `MAKE-TASK-PAGE` should call `WEBLOCKS/REQUEST:GET-PATH` and
 parse path to extract task's id. Probably this will change in future defroutes will catch
 matched path pieces.
 
 <a id="x-28WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29"></a>
 
-## [class](01c8) `weblocks-navigation-widget:navigation-widget` (ui-widget)
+## [class](c692) `weblocks-navigation-widget:navigation-widget` (ui-widget)
 
 Base class for all navigation widgets.
 
@@ -58,29 +58,29 @@ When rendered it tracks if `URL` was changed and
 creates a new child widget according to given navigation rules.
 
 Usually you don't want to inherit from this class manually,
-but instead use [`defroutes`][5b28] macro.
+but instead use [`defroutes`][1d19] macro.
 
 <a id="x-28WEBLOCKS-NAVIGATION-WIDGET-3ACURRENT-WIDGET-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-## [reader](82ed) `weblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
+## [reader](7e8e) `weblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
 
 <a id="x-28WEBLOCKS-NAVIGATION-WIDGET-3ACURRENT-PATH-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-## [reader](2c8b) `weblocks-navigation-widget:current-path` (navigation-widget) (= nil)
+## [reader](f66f) `weblocks-navigation-widget:current-path` (navigation-widget) (= nil)
 
 <a id="x-28WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-RULES-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-## [reader](9894) `weblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
+## [reader](d7d5) `weblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
 
 
-[6c59]: #x-28WEBLOCKS-NAVIGATION-WIDGET-3ACURRENT-WIDGET-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29
-[5b28]: #x-28WEBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29
-[7491]: #x-28WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29
-[702f]: NIL/blob/b4e2b9882faffffc7a922bb1bdd4a8639d6eb058/src/core.lisp#L118
-[01c8]: NIL/blob/b4e2b9882faffffc7a922bb1bdd4a8639d6eb058/src/core.lisp#L68
-[82ed]: NIL/blob/b4e2b9882faffffc7a922bb1bdd4a8639d6eb058/src/core.lisp#L69
-[2c8b]: NIL/blob/b4e2b9882faffffc7a922bb1bdd4a8639d6eb058/src/core.lisp#L71
-[9894]: NIL/blob/b4e2b9882faffffc7a922bb1bdd4a8639d6eb058/src/core.lisp#L73
+[7324]: https://github.com/40ants/weblocks-navigation-widget/blob/b0c40dade29a1ddc40f8ef27ab8a06bfbcc4d7a7/src/core.lisp#L118
+[c692]: https://github.com/40ants/weblocks-navigation-widget/blob/b0c40dade29a1ddc40f8ef27ab8a06bfbcc4d7a7/src/core.lisp#L72
+[7e8e]: https://github.com/40ants/weblocks-navigation-widget/blob/b0c40dade29a1ddc40f8ef27ab8a06bfbcc4d7a7/src/core.lisp#L73
+[f66f]: https://github.com/40ants/weblocks-navigation-widget/blob/b0c40dade29a1ddc40f8ef27ab8a06bfbcc4d7a7/src/core.lisp#L75
+[d7d5]: https://github.com/40ants/weblocks-navigation-widget/blob/b0c40dade29a1ddc40f8ef27ab8a06bfbcc4d7a7/src/core.lisp#L77
+[52ac]: index.html#x-28WEBLOCKS-NAVIGATION-WIDGET-3ACURRENT-WIDGET-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29
+[1d19]: index.html#x-28WEBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29
+[c6a6]: index.html#x-28WEBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29
 
 * * *
 ###### [generated by [40ANTS-DOC](https://40ants.com/doc/)]
