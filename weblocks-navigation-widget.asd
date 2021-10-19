@@ -4,7 +4,8 @@
   :license "BSD"
   :class :package-inferred-system
   :pathname "src"
-  :depends-on ("weblocks-navigation-widget/core")
+  :depends-on ("weblocks-navigation-widget/core"
+               "weblocks-navigation-widget/changelog")
   :description "A container widget which switches between children widgets when user changes an url."
   :long-description
   #.(with-open-file (stream (merge-pathnames

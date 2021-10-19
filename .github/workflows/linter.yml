@@ -1,0 +1,49 @@
+{
+  "name": "LINTER",
+  "on": {
+    "pull_request": null
+  },
+  "jobs": {
+    "linter": {
+      "runs-on": "ubuntu-latest",
+      "env": {
+        "OS": "ubuntu-latest",
+        "QUICKLISP_DIST": "quicklisp",
+        "LISP": "sbcl-bin"
+      },
+      "steps": [
+        {
+          "name": "Checkout Code",
+          "uses": "actions/checkout@v1"
+        },
+        {
+          "name": "Setup Common Lisp Environment",
+          "uses": "40ants/setup-lisp@v1",
+          "with": {
+            "asdf-system": "weblocks-navigation-widget"
+          }
+        },
+        {
+          "name": "Change dist to Ultralisp",
+          "run": "echo 'dist ultralisp http://dist.ultralisp.org' > qlfile",
+          "shell": "bash"
+        },
+        {
+          "name": "Update Qlot",
+          "run": "qlot update || qlot update",
+          "shell": "bash"
+        },
+        {
+          "name": "Install SBLint wrapper",
+          "run": "qlot exec ros install 40ants-linter",
+          "shell": "bash"
+        },
+        {
+          "name": "Run Linter",
+          "run": "qlot exec 40ants-linter --system \"weblocks-navigation-widget\"",
+          "shell": "bash"
+        }
+      ]
+    }
+  }
+}
