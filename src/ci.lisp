@@ -1,9 +1,9 @@
-(defpackage #:weblocks-navigation-widget/ci
+(defpackage #:reblocks-navigation-widget/ci
   (:use #:cl)
   (:import-from #:40ants-ci/workflow
                 #:defworkflow)
   (:import-from #:40ants-ci/jobs/linter))
-(in-package weblocks-navigation-widget/ci)
+(in-package reblocks-navigation-widget/ci)
 
 
 (defworkflow linter

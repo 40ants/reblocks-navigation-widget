@@ -1,36 +1,36 @@
-(defpackage #:weblocks-navigation-widget/changelog
+(defpackage #:reblocks-navigation-widget/changelog
   (:use #:cl)
   (:import-from #:40ants-doc/changelog
                 #:defchangelog))
-(in-package weblocks-navigation-widget/changelog)
+(in-package reblocks-navigation-widget/changelog)
 
 
 (defchangelog (:ignore-words ("URL"
                               "DEFWIDGET"
-                              "WEBLOCKS/WIDGET:RENDER"
+                              "REBLOCKS/WIDGET:RENDER"
                               "DEBUG"
                               "ASDF"
                               "MAKE-NAVIGATION-WIDGET"
-                              "WEBLOCKS/WIDGET:DEFWIDGET"
-                              "WEBLOCKS/RESPONSE:ABORT-PROCESSING"
-                              "WEBLOCKS/RESPONSE:IMMEDIATE-RESPONSE"
-                              "WEBLOCKS-UI/CORE:WIDGET"
-                              "WEBLOCKS-UI/CORE:UI-WIDGET")
-               ;; :package #:weblocks-navigation-widget
+                              "REBLOCKS/WIDGET:DEFWIDGET"
+                              "REBLOCKS/RESPONSE:ABORT-PROCESSING"
+                              "REBLOCKS/RESPONSE:IMMEDIATE-RESPONSE"
+                              "REBLOCKS-UI/CORE:WIDGET"
+                              "REBLOCKS-UI/CORE:UI-WIDGET")
+               ;; :package #:reblocks-navigation-widget
                )
   (0.7.0 2021-10-19
          "* Removed function MAKE-NAVIGATION-WIDGET.
           * Exported symbols, related to the widget class.
           * Added documentation.")
   (0.6.1 2021-03-12
-         "Moved to WEBLOCKS-UI/CORE:UI-WIDGET because WEBLOCKS-UI/CORE:WIDGET
+         "Moved to REBLOCKS-UI/CORE:UI-WIDGET because REBLOCKS-UI/CORE:WIDGET
           is deprecated and will be removed soon.")
   (0.6.0 2019-07-23
-         "Renamed DEFWIDGET to WEBLOCKS-NAVIGATION-WIDGET:DEFROUTES, so that it is more explicit
-          and it doesn't clash with WEBLOCKS/WIDGET:DEFWIDGET.")
+         "Renamed DEFWIDGET to REBLOCKS-NAVIGATION-WIDGET:DEFROUTES, so that it is more explicit
+          and it doesn't clash with REBLOCKS/WIDGET:DEFWIDGET.")
   (0.5.0 2019-01-22
-         "Function WEBLOCKS/RESPONSE:ABORT-PROCESSING was replaced with
-          WEBLOCKS/RESPONSE:IMMEDIATE-RESPONSE to work with `Weblocks >= 0.35.0`.")
+         "Function REBLOCKS/RESPONSE:ABORT-PROCESSING was replaced with
+          REBLOCKS/RESPONSE:IMMEDIATE-RESPONSE to work with `Reblocks >= 0.35.0`.")
   (0.4.1 2018-11-25
          "Message \"Rendering navigation widget\" now logged with DEBUG level.")
   (0.4.0 2018-02-04
@@ -41,11 +41,11 @@
           `make-<new-class>` function.
 
           This can be useful when you need navigation widget with
-          customized WEBLOCKS/WIDGET:RENDER method or attached dependencies. ")
+          customized REBLOCKS/WIDGET:RENDER method or attached dependencies. ")
   (0.2.0 2018-01-07
-         "Fixed to work with weblocks >= 0.22.0.")
+         "Fixed to work with reblocks >= 0.22.0.")
   (0.1.1 2017-12-10
-         "Now if no regex for URL, Weblocks will return 404.
+         "Now if no regex for URL, Reblocks will return 404.
           But you can redefine this behavior, providing a rule with `t`
           instead of the regex.")
   (0.1.0 2017-12-10
