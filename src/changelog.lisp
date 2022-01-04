@@ -18,6 +18,8 @@
                               "REBLOCKS-UI/CORE:UI-WIDGET")
                ;; :package #:reblocks-navigation-widget
                )
+  (0.8.0 2022-01-04
+         "* Moved to Reblocks.")
   (0.7.0 2021-10-19
          "* Removed function MAKE-NAVIGATION-WIDGET.
           * Exported symbols, related to the widget class.
