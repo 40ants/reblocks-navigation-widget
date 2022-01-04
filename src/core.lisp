@@ -1,4 +1,4 @@
-(uiop:define-package reblocks-navigation-widget
+(uiop:define-package #:reblocks-navigation-widget
   (:nicknames #:reblocks-navigation-widget/core)
   (:use :cl)
   ;; just dependencies
