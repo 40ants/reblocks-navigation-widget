@@ -52,7 +52,7 @@ method of your Reblocks application.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29"></a>
 
-### [macro](d775) `reblocks-navigation-widget:defroutes` class-name &rest rules
+### [macro](41b7) `reblocks-navigation-widget:defroutes` class-name &rest rules
 
 Defines a new class with name `CLASS-NAME`, inherited from [`navigation-widget`][9fc2].
 
@@ -83,7 +83,7 @@ matched path pieces.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29"></a>
 
-### [class](8cd7) `reblocks-navigation-widget:navigation-widget` (ui-widget)
+### [class](1166) `reblocks-navigation-widget:navigation-widget` (ui-widget)
 
 Base class for all navigation widgets.
 
@@ -95,15 +95,15 @@ but instead use [`defroutes`][5f0d] macro.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ACURRENT-WIDGET-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](f5a5) `reblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
+### [reader](1b15) `reblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ACURRENT-PATH-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](fae9) `reblocks-navigation-widget:current-path` (navigation-widget) (= nil)
+### [reader](2d58) `reblocks-navigation-widget:current-path` (navigation-widget) (= nil)
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-RULES-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](5f13) `reblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
+### [reader](bc94) `reblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
 
 
 [1f1d]: https://40ants.com/reblocks-navigation-widget/
@@ -112,11 +112,11 @@ but instead use [`defroutes`][5f0d] macro.
 [9fc2]: https://40ants.com/reblocks-navigation-widget/#x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29
 [a78a]: https://github.com/40ants/reblocks-navigation-widget
 [7c86]: https://github.com/40ants/reblocks-navigation-widget/actions
-[8cd7]: https://github.com/40ants/reblocks-navigation-widget/blob/bd08538eb1deb0df9015c0d8ab91abbb35127baa/src/core.lisp#L22
-[f5a5]: https://github.com/40ants/reblocks-navigation-widget/blob/bd08538eb1deb0df9015c0d8ab91abbb35127baa/src/core.lisp#L23
-[fae9]: https://github.com/40ants/reblocks-navigation-widget/blob/bd08538eb1deb0df9015c0d8ab91abbb35127baa/src/core.lisp#L25
-[5f13]: https://github.com/40ants/reblocks-navigation-widget/blob/bd08538eb1deb0df9015c0d8ab91abbb35127baa/src/core.lisp#L27
-[d775]: https://github.com/40ants/reblocks-navigation-widget/blob/bd08538eb1deb0df9015c0d8ab91abbb35127baa/src/core.lisp#L72
+[1166]: https://github.com/40ants/reblocks-navigation-widget/blob/ca82310791c3388b117f56abc2ce9f3a7e53d9c5/src/core.lisp#L22
+[1b15]: https://github.com/40ants/reblocks-navigation-widget/blob/ca82310791c3388b117f56abc2ce9f3a7e53d9c5/src/core.lisp#L23
+[2d58]: https://github.com/40ants/reblocks-navigation-widget/blob/ca82310791c3388b117f56abc2ce9f3a7e53d9c5/src/core.lisp#L25
+[bc94]: https://github.com/40ants/reblocks-navigation-widget/blob/ca82310791c3388b117f56abc2ce9f3a7e53d9c5/src/core.lisp#L27
+[41b7]: https://github.com/40ants/reblocks-navigation-widget/blob/ca82310791c3388b117f56abc2ce9f3a7e53d9c5/src/core.lisp#L72
 [c83a]: https://github.com/40ants/reblocks-navigation-widget/issues
 [7f8b]: https://quickdocs.org/log4cl
 [184b]: https://quickdocs.org/reblocks

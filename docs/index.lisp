@@ -14,7 +14,8 @@
                 #:current-path
                 #:current-widget
                 #:navigation-widget
-                #:defroutes-docs/changelog
+                #:defroutes)
+  (:import-from #:reblocks-navigation-widget-docs/changelog
                 #:@changelog)
   (:import-from #:docs-config
                 #:docs-config)
