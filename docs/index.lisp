@@ -27,7 +27,7 @@
 (in-readtable pythonic-string-syntax)
 
 
-(defmethod docs-config ((system (eql (asdf:find-system "reblocks-navigation-widget"))))
+(defmethod docs-config ((system (eql (asdf:find-system "reblocks-navigation-widget-docs"))))
   ;; 40ANTS-DOC-THEME-40ANTS system will bring
   ;; as dependency a full 40ANTS-DOC but we don't want
   ;; unnecessary dependencies here:
