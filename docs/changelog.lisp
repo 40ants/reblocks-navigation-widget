@@ -1,8 +1,8 @@
-(defpackage #:reblocks-navigation-widget/changelog
+(defpackage #:reblocks-navigation-widget-docs/changelog
   (:use #:cl)
   (:import-from #:40ants-doc/changelog
                 #:defchangelog))
-(in-package reblocks-navigation-widget/changelog)
+(in-package reblocks-navigation-widget-docs/changelog)
 
 
 (defchangelog (:ignore-words ("URL"
