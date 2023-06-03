@@ -11,62 +11,12 @@
                 #:ui-widget)
   (:import-from #:reblocks/response
                 #:immediate-response)
-  (:import-from #:40ants-doc
-                #:defsection
-                #:defsection-copy)
-  (:import-from #:docs-config
-                #:docs-config)
   (:export #:defroutes
-           #:@index
-           #:@readme
            #:navigation-widget
            #:current-widget
            #:current-path
            #:navigation-rules))
 (in-package reblocks-navigation-widget)
-
-
-(defmethod docs-config ((system (eql (asdf:find-system "reblocks-navigation-widget"))))
-  ;; 40ANTS-DOC-THEME-40ANTS system will bring
-  ;; as dependency a full 40ANTS-DOC but we don't want
-  ;; unnecessary dependencies here:
-  #+quicklisp
-  (uiop:symbol-call :ql :quickload :40ants-doc-theme-40ants)
-  #-quicklisp
-  (asdf:load-system :40ants-doc-theme-40ants)
-  
-  (list :theme
-        (find-symbol "40ANTS-THEME"
-                     (find-package "40ANTS-DOC-THEME-40ANTS"))))
-
-
-(defsection @index (:title "Reblocks Navigation Widget"
-                    :ignore-words ("URL"
-                                   "BSD"
-                                   "GIT"
-                                   "REBLOCKS/REQUEST:GET-PATH"
-                                   "MAKE-TASK-PAGE"
-                                   "MAKE-TASK-LIST"))
-  (reblocks-navigation-widget system)
-  
-  "# Introduction
-
-   This addon for Reblocks frameworks allows you to define which widgets should be
-   shown to the user dependening on URL's path.
-
-   The main entry-point is DEFROUTES macro. Use it to define a subclass of
-   navigation widget and then return this widget from the session initialization
-   method of your Reblocks application.
-
-   # API
-   "
-  (defroutes macro)
-  (navigation-widget class)
-  (current-widget (reader navigation-widget))
-  (current-path (reader navigation-widget))
-  (navigation-rules (reader navigation-widget)))
-
-(defsection-copy @readme @index)
 
 
 (reblocks/widget:defwidget navigation-widget (ui-widget)
