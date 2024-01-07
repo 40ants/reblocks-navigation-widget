@@ -7,8 +7,6 @@
   
   (:import-from #:reblocks/widget
                 #:render)
-  (:import-from #:reblocks-ui/core
-                #:ui-widget)
   (:import-from #:reblocks/response
                 #:immediate-response)
   (:export #:defroutes
@@ -19,11 +17,15 @@
 (in-package reblocks-navigation-widget)
 
 
-(reblocks/widget:defwidget navigation-widget (ui-widget)
+(reblocks/widget:defwidget navigation-widget ()
   ((current-widget :initform nil
                    :reader current-widget)
    (current-path :initform nil
-                 :reader current-path)
+                 :reader current-path
+                 :documentation "A whole path including the app's prefix.")
+   (current-prefix :initform nil
+                   :reader current-prefix
+                   :documentation "A whole prefix including the rule matched to the current-widget.")
    (rules :initarg :rules
           :reader navigation-rules))
   (:documentation "Base class for all navigation widgets.
@@ -60,16 +62,46 @@
 "
   `(list ,@(loop for (rules . code) in rules
                  appending (loop for rule in (typecase rules
-                                               (list rules)
+                                               (list
+                                                (cond
+                                                  ;; Here we allowing to pass a rule
+                                                  ;; as list like (:prefix "/foo/bar")
+                                                  ((typep (car rules)
+                                                          'keyword)
+                                                   (list rules))
+                                                  ;; and otherwise it can be a list
+                                                  ;; of separate paths:
+                                                  ;; ("/foo" "/bar")
+                                                  (t rules)))
                                                (t (list rules)))
                                  collect `(list ,(typecase rule
-                                                           (string (format nil "^~A$" rule))
-                                                           (t rule))
+                                                   (cons
+                                                    (destructuring-bind (rule-type rule-value)
+                                                        rule
+                                                      (case rule-type
+                                                        ;; This is the case, when
+                                                        ;; there will be a nested
+                                                        ;; navigation widget and we
+                                                        ;; need to match only by prefix,
+                                                        ;; allowing other navigation widget
+                                                        ;; to handle the rest of URI:
+                                                        (:prefix
+                                                         (format nil "^~A" rule-value))
+                                                        (t
+                                                         (error "Unsupported rule type: ~S"
+                                                                rule-type))))
+                                                    )
+                                                   ;; Usual case when we don't want
+                                                   ;; the rule match to any URLs starting
+                                                   ;; from given text:
+                                                   (string
+                                                    (format nil "^~A$" rule))
+                                                   (t rule))
                                                 (lambda ()
                                                   ,@code))))))
 
 
-(defmacro defroutes (class-name &rest rules)
+(defmacro defroutes (class-name &body rules)
   "Defines a new class with name CLASS-NAME, inherited from NAVIGATION-WIDGET.
 
    And a function `make-{class-name}` to make instances of this class.
@@ -110,13 +142,24 @@
                      :rules ,rules
                      args)))))
 
+(declaim (ftype (function (list string) (values &optional function string))
+                search-rule))
 
 (defun search-rule (rules path)
   (loop for (rule-path func) in rules
         do (log:debug "Checking" rule-path "against" path)
-        when (or (eql rule-path t) ;; path can be not a string but just 't
-                 (cl-ppcre:scan rule-path path))
-          return func))
+           (when (eql rule-path t)
+             ;; path can be not a string but just 't
+             (return-from search-rule
+               (values func
+                       path)))
+           (multiple-value-bind (start end)
+               (cl-ppcre:scan rule-path path)
+             (when (and start end)
+               (return-from search-rule
+                 (values func
+                         (str:substring start end path))))))
+  (values))
 
 
 (defun get-new-widget-constructor (widget path)
@@ -124,25 +167,56 @@
                path))
 
 
-(defmethod render ((widget navigation-widget))
-  (log:debug "Rendering navigation widget")
+(defvar *current-prefix*)
+(setf (documentation '*current-prefix* 'variable)
+      "This var will be set during the RENDER method execution and will be equal to the path
+       of currently active rule. This allows to process nested navigation widgets correctly.
+       ")
 
-  (with-slots (current-widget current-path)
+
+(defun cut-prefix (path prefix)
+  (cond
+    ((str:starts-with-p prefix path)
+     (str:substring (length prefix) nil path))
+    (t
+     path)))
+
+
+(defun join-prefix (prefix path)
+  (concatenate 'string prefix path))
+
+
+(defmethod render ((widget navigation-widget))
+  (with-slots (current-widget current-path current-prefix)
       widget
+    
     (let ((previous-path current-path)
-          (path (reblocks/request:get-path)))
+          (whole-path (reblocks/request:get-path)))
       (unless (equal previous-path
-                     path)
+                     whole-path)
         ;; Create a new widget or switch to existing one
         ;; if path was changed
-        (let* ((construct-new-widget (get-new-widget-constructor widget path)))
-          (if construct-new-widget
-              (setf current-widget(funcall construct-new-widget)
-                    ;; Now we'll remember that path was changed
-                    current-path path)
-              ;; TODO: Make this behaviour configurable
-              (progn (log:error "No widget constructor for path ~A" path)
-                     (immediate-response "Not found" :code 404))))))
+        (let* ((new-current-prefix
+                 (if (boundp '*current-prefix*)
+                     *current-prefix*
+                     (reblocks/app:get-prefix reblocks/variables:*current-app*)))
+               (path (cut-prefix whole-path new-current-prefix)))
+          (multiple-value-bind (construct-new-widget matched-path)
+              (get-new-widget-constructor widget path)
+            (cond
+              (construct-new-widget
+               (setf current-widget (funcall construct-new-widget)
+                     ;; Now we'll remember that path was changed
+                     current-path whole-path
+                     current-prefix (join-prefix new-current-prefix
+                                                 matched-path)))
+              (t
+               ;; TODO: Make this behaviour configurable, probably for
+               ;; some cases it would be useful to show some default
+               ;; widget.
+               (log:error "No widget constructor for path ~A" path)
+               (immediate-response "Not found" :code 404)))))))
 
     (when current-widget
-      (render current-widget))))
+      (let ((*current-prefix* current-prefix))
+        (render current-widget)))))

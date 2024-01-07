@@ -18,6 +18,31 @@
                               "REBLOCKS-UI/CORE:UI-WIDGET")
                ;; :package #:reblocks-navigation-widget
                )
+  (0.9.0 2024-01-07
+         "
+Breaking Changes
+================
+
+* Now router respects current app's prefix and you don't have to specify
+  the prefix in the beginning of each rule. To fix your application, remove
+  common prefix from the rules.
+
+Changes
+=======
+
+* Navigation widget does not depend on \"reblocks-ui\" anymore.
+* Now you can use (:prefix \"/some\") as a rule, to match not only
+  \"/some\", but any URL started with \"/some\". Rules given as string
+  require exact match.
+* Now you can use nested navigation widgets. See more in the documentation section REBLOCKS-NAVIGATION-WIDGET-DOCS/INDEX::@NESTED.
+
+
+Fixes
+=====
+
+* REBLOCKS-NAVIGATION-WIDGET:DEFROUTES macro indentation was fixed to make all rules indented the same way.
+
+")
   (0.8.0 2022-01-04
          "* Moved to Reblocks.")
   (0.7.0 2021-10-19
