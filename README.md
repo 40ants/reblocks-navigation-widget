@@ -6,21 +6,13 @@
 
 ## REBLOCKS-NAVIGATION-WIDGET ASDF System Details
 
-* Version: 0.8.0
-
 * Description: A container widget which switches between children widgets when user changes an url.
-
 * Licence: Unlicense
-
 * Author: Alexander Artemenko <svetlyak.40wt@gmail.com>
-
 * Homepage: [https://40ants.com/reblocks-navigation-widget/][1f1d]
-
 * Bug tracker: [https://github.com/40ants/reblocks-navigation-widget/issues][c83a]
-
 * Source control: [GIT][a78a]
-
-* Depends on: [log4cl][7f8b], [reblocks][184b], [reblocks-ui][4376]
+* Depends on: [log4cl][7f8b], [reblocks][184b]
 
 [![](https://github-actions.40ants.com/40ants/reblocks-navigation-widget/matrix.svg?only=ci.run-tests)][7c86]
 
@@ -48,13 +40,48 @@ The main entry-point is [`defroutes`][5f0d] macro. Use it to define a subclass o
 navigation widget and then return this widget from the session initialization
 method of your Reblocks application.
 
+<a id="x-28REBLOCKS-NAVIGATION-WIDGET-DOCS-2FINDEX-3A-3A-40NESTED-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
+
+## Nested routes
+
+Starting from version 0.9.0, the library supports nested routes.
+This allows you to combine routes defined in separate systems.
+
+For example, lets pretend we have a separate `ASDF` system for user management.
+It defines it's routes like this:
+
+```lisp
+(defroutes users
+  ("/" (make-user-list))
+  ("/add" (make-new-user-form)))
+```
+And now, if we want to incorporate this user management app into our app having
+it's own routing, we can do this by using a prefix rule:
+
+```lisp
+(defroutes main
+  ;; a subroutes
+  ((:prefix "/users") (make-users))
+  ;; a usual widget
+  ("/stats" (make-stats)))
+```
+In it's turn, `MAIN` router could be used in app having it's own `PREFIX` `/admin`. Here is how
+this nested setup will be processed by navigation widgets.
+
+When user opens a page with `URI` `/admin/users/add`, then `MAIN` widget will be rendered
+first. It will see the app has `/admin` prefix and will cut it from the `URI`. Then `MAIN` routes
+widget will check `/users/add` against it's rules and will create `USERS` widget. `RENDER` method
+of `USERS` widget will be called with `*current-path*` set to `/admin/users`. In it's turn,
+`USERS` widget will cut `/admin/users` prefix from the whole `URI` `/admin/users/add` and will check
+`/add` against it's rules to find out it need to create a `NEW-USER-FORM`.
+
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-DOCS-2FINDEX-3A-3A-40API-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29"></a>
 
 ## API
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29"></a>
 
-### [macro](8281) `reblocks-navigation-widget:defroutes` class-name &rest rules
+### [macro](001b) `reblocks-navigation-widget:defroutes` class-name &body rules
 
 Defines a new class with name `CLASS-NAME`, inherited from [`navigation-widget`][9fc2].
 
@@ -85,7 +112,7 @@ matched path pieces.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29"></a>
 
-### [class](9be2) `reblocks-navigation-widget:navigation-widget` (ui-widget)
+### [class](2d98) `reblocks-navigation-widget:navigation-widget` (widget)
 
 Base class for all navigation widgets.
 
@@ -97,15 +124,17 @@ but instead use [`defroutes`][5f0d] macro.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ACURRENT-WIDGET-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](b464) `reblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
+### [reader](c7ce) `reblocks-navigation-widget:current-widget` (navigation-widget) (= nil)
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ACURRENT-PATH-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](0cb4) `reblocks-navigation-widget:current-path` (navigation-widget) (= nil)
+### [reader](d429) `reblocks-navigation-widget:current-path` (navigation-widget) (= nil)
+
+A whole path including the app's prefix.
 
 <a id="x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-RULES-20-2840ANTS-DOC-2FLOCATIVES-3AREADER-20REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-29-29"></a>
 
-### [reader](1ef9) `reblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
+### [reader](0b59) `reblocks-navigation-widget:navigation-rules` (navigation-widget) (:rules)
 
 
 [1f1d]: https://40ants.com/reblocks-navigation-widget/
@@ -114,15 +143,14 @@ but instead use [`defroutes`][5f0d] macro.
 [9fc2]: https://40ants.com/reblocks-navigation-widget/#x-28REBLOCKS-NAVIGATION-WIDGET-3ANAVIGATION-WIDGET-20CLASS-29
 [a78a]: https://github.com/40ants/reblocks-navigation-widget
 [7c86]: https://github.com/40ants/reblocks-navigation-widget/actions
-[9be2]: https://github.com/40ants/reblocks-navigation-widget/blob/46246322b31577837b12a91a96f47d4f8520dcda/src/core.lisp#L22
-[b464]: https://github.com/40ants/reblocks-navigation-widget/blob/46246322b31577837b12a91a96f47d4f8520dcda/src/core.lisp#L23
-[0cb4]: https://github.com/40ants/reblocks-navigation-widget/blob/46246322b31577837b12a91a96f47d4f8520dcda/src/core.lisp#L25
-[1ef9]: https://github.com/40ants/reblocks-navigation-widget/blob/46246322b31577837b12a91a96f47d4f8520dcda/src/core.lisp#L27
-[8281]: https://github.com/40ants/reblocks-navigation-widget/blob/46246322b31577837b12a91a96f47d4f8520dcda/src/core.lisp#L72
+[001b]: https://github.com/40ants/reblocks-navigation-widget/blob/9af0c42e7ad88ca70ece26dc907c42c398d046d8/src/core.lisp#L104
+[2d98]: https://github.com/40ants/reblocks-navigation-widget/blob/9af0c42e7ad88ca70ece26dc907c42c398d046d8/src/core.lisp#L20
+[c7ce]: https://github.com/40ants/reblocks-navigation-widget/blob/9af0c42e7ad88ca70ece26dc907c42c398d046d8/src/core.lisp#L21
+[d429]: https://github.com/40ants/reblocks-navigation-widget/blob/9af0c42e7ad88ca70ece26dc907c42c398d046d8/src/core.lisp#L23
+[0b59]: https://github.com/40ants/reblocks-navigation-widget/blob/9af0c42e7ad88ca70ece26dc907c42c398d046d8/src/core.lisp#L29
 [c83a]: https://github.com/40ants/reblocks-navigation-widget/issues
 [7f8b]: https://quickdocs.org/log4cl
 [184b]: https://quickdocs.org/reblocks
-[4376]: https://quickdocs.org/reblocks-ui
 
 * * *
 ###### [generated by [40ANTS-DOC](https://40ants.com/doc/)]
