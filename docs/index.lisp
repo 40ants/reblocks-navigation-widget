@@ -59,6 +59,7 @@
 "
   (@installation section)
   (@usage section)
+  (@nested section)
   (@api section))
 
 
@@ -85,6 +86,48 @@ You can install this library from Quicklisp, but you want to receive updates qui
    navigation widget and then return this widget from the session initialization
    method of your Reblocks application.
    ")
+
+
+(defsection @nested (:title "Nested routes"
+                     :ignore-words ("PREFIX"
+                                    "MAIN"
+                                    "RENDER"
+                                    "URI"
+                                    "USERS"
+                                    "NEW-USER-FORM"
+                                    "ASDF"))
+  "Starting from version 0.9.0, the library supports nested routes.
+   This allows you to combine routes defined in separate systems.
+  
+   For example, lets pretend we have a separate ASDF system for user management.
+   It defines it's routes like this:
+
+   ```lisp
+   (defroutes users
+     (\"/\" (make-user-list))
+     (\"/add\" (make-new-user-form)))
+   ```
+
+   And now, if we want to incorporate this user management app into our app having
+   it's own routing, we can do this by using a prefix rule:
+
+   ```lisp
+   (defroutes main
+     ;; a subroutes
+     ((:prefix \"/users\") (make-users))
+     ;; a usual widget
+     (\"/stats\" (make-stats)))
+   ```
+
+   In it's turn, MAIN router could be used in app having it's own PREFIX `/admin`. Here is how
+   this nested setup will be processed by navigation widgets.
+
+   When user opens a page with URI `/admin/users/add`, then MAIN widget will be rendered
+   first. It will see the app has `/admin` prefix and will cut it from the URI. Then MAIN routes
+   widget will check `/users/add` against it's rules and will create USERS widget. RENDER method
+   of USERS widget will be called with `*current-path*` set to `/admin/users`. In it's turn,
+   USERS widget will cut `/admin/users` prefix from the whole URI `/admin/users/add` and will check
+   `/add` against it's rules to find out it need to create a NEW-USER-FORM.")
 
 
 (defsection @api (:title "API")
