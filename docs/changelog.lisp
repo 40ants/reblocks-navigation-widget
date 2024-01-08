@@ -18,6 +18,14 @@
                               "REBLOCKS-UI/CORE:UI-WIDGET")
                ;; :package #:reblocks-navigation-widget
                )
+  (0.9.1 2024-01-08
+         "
+Fixes
+=====
+
+* Fixed the case when Reblocks app's prefix is `/`.
+
+")
   (0.9.0 2024-01-07
          "
 Breaking Changes

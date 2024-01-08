@@ -9,6 +9,8 @@
                 #:render)
   (:import-from #:reblocks/response
                 #:immediate-response)
+  (:import-from #:str
+                #:trim-right)
   (:export #:defroutes
            #:navigation-widget
            #:current-widget
@@ -199,7 +201,10 @@
         (let* ((new-current-prefix
                  (if (boundp '*current-prefix*)
                      *current-prefix*
-                     (reblocks/app:get-prefix reblocks/variables:*current-app*)))
+                     (trim-right (reblocks/app:get-prefix reblocks/variables:*current-app*)
+                                 ;; We need to remove / from the right,
+                                 ;; because navigation rules already started with a backslash.
+                                 :char-bag "/")))
                (path (cut-prefix whole-path new-current-prefix)))
           (multiple-value-bind (construct-new-widget matched-path)
               (get-new-widget-constructor widget path)
