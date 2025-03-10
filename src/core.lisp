@@ -2,7 +2,10 @@
   (:nicknames #:reblocks-navigation-widget/core)
   (:use :cl)
   ;; just dependencies
-  (:import-from #:log4cl)
+  (:import-from #:log)
+  (:import-from #:cl-ppcre)
+  (:import-from #:alexandria)
+  (:import-from #:reblocks/app)
   (:import-from #:reblocks/request)
   
   (:import-from #:reblocks/widget
