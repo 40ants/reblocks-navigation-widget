@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version="2.0">
+    <channel>
+        <title>reblocks-navigation-widget-docs ChangeLog</title>
+        <link>https://40ants.com/reblocks-navigation-widget/</link>
+        <generator>xml-emitter</generator>
+        <language>en-us</language>
+        <item>
+            <title>0.9.1  (2024-01-08)</title>
+            <description>&lt;h1 id=&quot;fixes&quot;&gt;Fixes&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Fixed the case when Reblocks app&apos;s prefix is &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</description>
+            <pubDate>Mon, 08 Jan 2024 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.9.0  (2024-01-07)</title>
+            <description>&lt;h1 id=&quot;breaking-changes&quot;&gt;Breaking Changes&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Now router respects current app&apos;s prefix and you don&apos;t have to specify
+  the prefix in the beginning of each rule. To fix your application, remove
+  common prefix from the rules.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h1 id=&quot;changes&quot;&gt;Changes&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Navigation widget does not depend on &amp;quot;reblocks-ui&amp;quot; anymore.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Now you can use (:prefix &amp;quot;/some&amp;quot;) as a rule, to match not only
+  &amp;quot;/some&amp;quot;, but any &lt;code&gt;URL&lt;/code&gt; started with &amp;quot;/some&amp;quot;. Rules given as string
+  require exact match.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Now you can use nested navigation widgets. See more in the documentation section &lt;a href=&quot;https://40ants.com/reblocks-navigation-widget/#x-28REBLOCKS-NAVIGATION-WIDGET-DOCS-2FINDEX-3A-3A-40NESTED-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29&quot; data-document=&quot;https://40ants.com/reblocks-navigation-widget/&quot; data-node=&quot;x-28REBLOCKS-NAVIGATION-WIDGET-DOCS-2FINDEX-3A-3A-40NESTED-2040ANTS-DOC-2FLOCATIVES-3ASECTION-29&quot;&gt;&lt;code&gt;Nested routes&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h1 id=&quot;fixes&quot;&gt;Fixes&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://40ants.com/reblocks-navigation-widget/#x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29&quot; data-document=&quot;https://40ants.com/reblocks-navigation-widget/&quot; data-node=&quot;x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29&quot;&gt;&lt;code&gt;reblocks-navigation-widget:defroutes&lt;/code&gt;&lt;/a&gt; macro indentation was fixed to make all rules indented the same way.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</description>
+            <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.8.0  (2022-01-04)</title>
+            <description>&lt;ul&gt;&lt;li&gt;&lt;p&gt;Moved to Reblocks.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</description>
+            <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.7.0  (2021-10-19)</title>
+            <description>&lt;ul&gt;&lt;li&gt;&lt;p&gt;Removed function &lt;code&gt;MAKE-NAVIGATION-WIDGET&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Exported symbols, related to the widget class.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Added documentation.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</description>
+            <pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.6.1  (2021-03-12)</title>
+            <description>&lt;p&gt;Moved to &lt;code&gt;REBLOCKS-UI/CORE:UI-WIDGET&lt;/code&gt; because &lt;code&gt;REBLOCKS-UI/CORE:WIDGET&lt;/code&gt;
+is deprecated and will be removed soon.&lt;/p&gt;</description>
+            <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.6.0  (2019-07-23)</title>
+            <description>&lt;p&gt;Renamed &lt;code&gt;DEFWIDGET&lt;/code&gt; to &lt;a href=&quot;https://40ants.com/reblocks-navigation-widget/#x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29&quot; data-document=&quot;https://40ants.com/reblocks-navigation-widget/&quot; data-node=&quot;x-28REBLOCKS-NAVIGATION-WIDGET-3ADEFROUTES-20-2840ANTS-DOC-2FLOCATIVES-3AMACRO-29-29&quot;&gt;&lt;code&gt;reblocks-navigation-widget:defroutes&lt;/code&gt;&lt;/a&gt;, so that it is more explicit
+and it doesn&apos;t clash with &lt;code&gt;REBLOCKS/WIDGET:DEFWIDGET&lt;/code&gt;.&lt;/p&gt;</description>
+            <pubDate>Tue, 23 Jul 2019 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.5.0  (2019-01-22)</title>
+            <description>&lt;p&gt;Function &lt;code&gt;REBLOCKS/RESPONSE:ABORT-PROCESSING&lt;/code&gt; was replaced with
+&lt;code&gt;REBLOCKS/RESPONSE:IMMEDIATE-RESPONSE&lt;/code&gt; to work with &lt;code&gt;Reblocks &amp;gt;= 0.35.0&lt;/code&gt;.&lt;/p&gt;</description>
+            <pubDate>Tue, 22 Jan 2019 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.4.1  (2018-11-25)</title>
+            <description>&lt;p&gt;Message &amp;quot;Rendering navigation widget&amp;quot; now logged with &lt;code&gt;DEBUG&lt;/code&gt; level.&lt;/p&gt;</description>
+            <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.4.0  (2018-02-04)</title>
+            <description>&lt;p&gt;Move to package inferred &lt;code&gt;ASDF&lt;/code&gt; class.&lt;/p&gt;</description>
+            <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.3.0  (2018-01-11)</title>
+            <description>&lt;p&gt;Added a &lt;code&gt;DEFWIDGET&lt;/code&gt; macro, which defines a new class,
+based on navigation-widget, along with rules and a
+&lt;code&gt;make-&amp;lt;new-class&amp;gt;&lt;/code&gt; function.&lt;/p&gt;&lt;p&gt;This can be useful when you need navigation widget with
+customized &lt;code&gt;REBLOCKS/WIDGET:RENDER&lt;/code&gt; method or attached dependencies. &lt;/p&gt;</description>
+            <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.2.0  (2018-01-07)</title>
+            <description>&lt;p&gt;Fixed to work with reblocks &amp;gt;= 0.22.0.&lt;/p&gt;</description>
+            <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.1.1  (2017-12-10)</title>
+            <description>&lt;p&gt;Now if no regex for &lt;code&gt;URL&lt;/code&gt;, Reblocks will return 404.
+But you can redefine this behavior, providing a rule with &lt;code&gt;t&lt;/code&gt;
+instead of the regex.&lt;/p&gt;</description>
+            <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
+        </item>
+        <item>
+            <title>0.1.0  (2017-12-10)</title>
+            <description>&lt;p&gt;Basic functionality.&lt;/p&gt;</description>
+            <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
+        </item>
+    </channel>
+</rss>
