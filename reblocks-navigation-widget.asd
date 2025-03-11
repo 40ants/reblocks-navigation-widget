@@ -11,3 +11,6 @@
   :pathname "src"
   :depends-on ("reblocks-navigation-widget/core")
   :in-order-to ((test-op (test-op "reblocks-navigation-widget-tests"))))
+
+
+(asdf:register-system-packages "log4cl" '(#:log))
